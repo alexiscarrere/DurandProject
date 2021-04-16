@@ -57,8 +57,14 @@ class MachineOutilController extends AbstractController
      * @Route("/{id}", name="read", requirements={"id": "\d+"},  methods={"GET"})
      */
     public function read(MachineOutilRepository $machineOutilRepository, $id, SerializerInterface $serializer)
-    {
+    {   
         $machineOutil = $machineOutilRepository->findBy(array('id' => $id));
+
+        if ($this->getUser()->getId() != $machineOutil->getUser()->getId()){
+
+            return new Response('Accès refusé', 403);
+        }
+
         
         if (!empty($machineOutil)) {
             return new JsonResponse($serializer->normalize(
