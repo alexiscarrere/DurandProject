@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**     
 * @Route("/api/machineOutil", name="machineOutil")
@@ -56,19 +55,19 @@ class MachineOutilController extends AbstractController
     /**
      * @Route("/{id}", name="read", requirements={"id": "\d+"},  methods={"GET"})
      */
-    public function read(MachineOutilRepository $machineOutilRepository, $id, SerializerInterface $serializer)
+    public function read(MachineOutilRepository $machineOutilRepository, $id, SerializerInterface $serializer, MachineOutil $machineOutil )
     {   
-        $machineOutil = $machineOutilRepository->findBy(array('id' => $id));
-
+        
         if ($this->getUser()->getId() != $machineOutil->getUser()->getId()){
 
             return new Response('Accès refusé', 403);
         }
 
+        $read = $machineOutilRepository->findBy(array('id' => $id));
         
-        if (!empty($machineOutil)) {
+        if (!empty($read)) {
             return new JsonResponse($serializer->normalize(
-                $machineOutil,
+                $read,
                 'json',
                 ['groups' => ['machineOutil', 'user']]
                 
