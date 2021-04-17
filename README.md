@@ -10,17 +10,17 @@ Pour l'utiliser, après avoir crée une bdd dans un .env.local et grầce à la 
 
 Les routes disponibles sont :
 
-/api/machineOutil : CREATE (POST) : En envoyant des données telles que le nom et la description, une machineOutil sera créée.
-/api/machineOutil/{/id} : READ (GET) : Vous pourrez lire les informations de VOTRE machineOutil. Si vous essayez de lire une machine qui ne vous appartient pas, erreur.
-/api/machineOutil/{id} : UPDATE (PATCH) : En envoyant des données telles que le nom et la description, la machineOutil ayant pour id l'id sélectionné sera modifiée.
-/api/machineOutil/{id} : DELETE (DELETE) : Supprimez une machineOutil vous appartenant.
+- /api/machineOutil : CREATE (POST) : En envoyant des données telles que le nom et la description, une machineOutil sera créée.
+- /api/machineOutil/{/id} : READ (GET) : Vous pourrez lire les informations de VOTRE machineOutil. Si vous essayez de lire une machine qui ne vous appartient pas, erreur.
+- /api/machineOutil/{id} : UPDATE (PATCH) : En envoyant des données telles que le nom et la description, la machineOutil ayant pour id l'id sélectionné sera modifiée.
+- /api/machineOutil/{id} : DELETE (DELETE) : Supprimez une machineOutil vous appartenant.
 
 Pour utiliser ces routes, vous devrez envoyer en Header : "Authorization" : "Bearer (Jeton précédemment obtenu)"
 
 
 Une machine outil est composée des éléments suivants :
-• un id,
-• un nom,
-• une description,
-• et une liaison à un utilisateur (un utilisateur peut avoir plusieurs machines mais machine n’a
+- un id,
+- un nom,
+- une description,
+- et une liaison à un utilisateur (un utilisateur peut avoir plusieurs machines mais machine n’a
 qu’un utilisateur)
